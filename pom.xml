@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.online.cinema</groupId>
+  <artifactId>OnlineCinemaSystem</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>OnlineCinemaBusinessModule</module>
+    <module>OnlineCinemaPersistenceModule</module>
+    <module>OnlineCinemaWeb</module>
+  </modules>
+  <name>OnlineCinemaSystem Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>OnlineCinemaSystem</finalName>
+  </build>
+</project>
