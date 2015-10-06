@@ -7,8 +7,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>OnlineCinamaBusinessModule</artifactId>
-    <packaging>war</packaging>
-    <name>OnlineCinamaBusinessModule Maven Webapp</name>
+    <packaging>jar</packaging>
+    <name>OnlineCinamaBusinessModule [JAR]</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -17,8 +17,15 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
+        <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+        </plugin>
+        </plugins>
         <finalName>OnlineCinamaBusinessModule</finalName>
     </build>
 </project>

@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>OnlineCinemaWeb</artifactId>
     <packaging>war</packaging>
-    <name>OnlineCinemaWeb Maven Webapp</name>
+    <name>OnlineCinemaWeb [WAR]</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -19,6 +19,12 @@
         </dependency>
     </dependencies>
     <build>
+        <plugins>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+        </plugins>
         <finalName>OnlineCinemaWeb</finalName>
     </build>
 </project>
