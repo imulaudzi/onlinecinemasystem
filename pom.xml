@@ -23,6 +23,8 @@
         <hibernate.version>4.3.10.Final</hibernate.version>
         <h2database.version>1.4.178</h2database.version>
         <genericdao.version>1.2.0</genericdao.version>
+        <dbcp2.version>2.0.1</dbcp2.version>
+
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -36,7 +38,11 @@
             <!--<artifactId>persistence-api</artifactId>-->
             <!--<version>${persistence.api.version}</version>-->
             <!--</dependency>-->
-
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>${dbcp2.version}</version>
+            </dependency>
             <!--Logging-->
             <dependency>
                 <groupId>org.slf4j</groupId>
