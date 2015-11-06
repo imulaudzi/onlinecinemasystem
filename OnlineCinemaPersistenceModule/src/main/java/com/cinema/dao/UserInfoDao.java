@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface UserInfoDao extends GenericDao<UserInfo, Long> {
 
+    UserInfo findByUserID(Long userId);
+
     UserInfo findByIdNumber(String IdNumber);
 
     List<UserInfo> listAllUsers();
