@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"   xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-   <bean id="cinemaDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"
-         p:driverClassName="org.postgresql.Driver"
-         p:url="jdbc:postgresql://dbserver:5432/CINEMA_SYS"
-         p:username="postgres"
-         p:password="isaac2"/>
+    <bean id="cinemaDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"
+          p:driverClassName="org.postgresql.Driver"
+          p:url="jdbc:postgresql://dbserver:5432/CINEMA_SYS"
+          p:username="postgres"
+          p:password="isaac2"/>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-
         <property name="dataSource" ref="cinemaDataSource"/>
         <property name="annotatedClasses">
             <list>
@@ -29,9 +27,7 @@
                 <prop key="hibernate.format_sql">true</prop>
             </props>
         </property>
-
     </bean>
-
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="nestedTransactionAllowed" value="true"/>
         <property name="validateExistingTransaction" value="true"/>
@@ -39,27 +35,81 @@
         <property name="dataSource" ref="cinemaDataSource"/>
     </bean>
     <bean id="finderIntroductionAdvisor" class="com.cinema.dao.generic.finder.impl.FinderIntroductionAdvisor"/>
-     <bean id="abstractDao" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
-         <property name="interceptorNames">
-             <list>
-                 <value>finderIntroductionAdvisor</value>
-             </list>
-         </property>
-     </bean>
-
+    <bean id="abstractDao" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
+        <property name="interceptorNames">
+            <list>
+                <value>finderIntroductionAdvisor</value>
+            </list>
+        </property>
+    </bean>
     <bean id="abstractDaoTarget" class="com.cinema.dao.generic.Impl.GenericDaoHibernateImpl" abstract="true">
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="namingStrategy">
             <bean class="com.cinema.dao.generic.finder.impl.SimpleFinderNamingStrategy"/>
         </property>
     </bean>
-
     <bean id="userInfoDao" parent="abstractDao">
         <property name="proxyInterfaces" value="com.cinema.dao.UserInfoDao"/>
         <property name="target">
-         <bean parent="abstractDaoTarget">
-             <constructor-arg value="com.cinema.dao.model.UserInfo"/>
-         </bean>
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.UserInfo"/>
+            </bean>
         </property>
     </bean>
-    </beans>
+    <bean id="bookingDao" parent="abstractDao">
+        <property name="proxyInterfaces" value="com.cinema.dao.BookingDao"/>
+        <property name="target">
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.Booking"/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="movieInfoDao" parent="abstractDao">
+        <property name="proxyInterfaces" value="com.cinema.dao.MovieInfoDao"/>
+        <property name="target">
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.MovieInfo"/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="screeningInfoDao" parent="abstractDao">
+        <property name="proxyInterfaces" value="com.cinema.dao.ScreeningInfoDao"/>
+        <property name="target">
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.ScreeningInfo"/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="screeningRoomDao" parent="abstractDao">
+        <property name="proxyInterfaces" value="com.cinema.dao.ScreeningRoomDao"/>
+        <property name="target">
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.ScreeningRoom"/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="screeningRoomSeatDao" parent="abstractDao">
+        <property name="proxyInterfaces" value="com.cinema.dao.ScreeningRoomSeatDao"/>
+        <property name="target">
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.ScreeningRoomSeat"/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ticketInfoDao" parent="abstractDao">
+        <property name="proxyInterfaces" value="com.cinema.dao.TicketInfoDao"/>
+        <property name="target">
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.TicketInfo"/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ticketTypeDao" parent="abstractDao">
+        <property name="proxyInterfaces" value="com.cinema.dao.TicketTypeDao"/>
+        <property name="target">
+            <bean parent="abstractDaoTarget">
+                <constructor-arg value="com.cinema.dao.model.TicketType"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

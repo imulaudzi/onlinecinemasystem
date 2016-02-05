@@ -32,6 +32,8 @@ public class UserInfo {
     private BigDecimal amount;
     @Column(name = "TELEPHONE")
     private String telephoneNo;
+    @Column(name = "ACCOUNT_STATUS")
+    private String accountStatus;
 
 
     public Long getUserId() {
@@ -88,5 +90,13 @@ public class UserInfo {
 
     public void setTelephoneNo(String telephoneNo) {
         this.telephoneNo = telephoneNo;
+    }
+
+    public String getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
     }
 }
