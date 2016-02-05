@@ -14,4 +14,7 @@ public interface TicketTypeDao extends GenericDao<TicketType, Long> {
 
     List<TicketType> listTicketTypes();
 
+    TicketType findTicketTypeById(Long ticketTypeId);
+    List<TicketType> listTicketType();
+
 }
